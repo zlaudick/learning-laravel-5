@@ -24,6 +24,10 @@ class Article extends Model
     }
 
     public function setPublishedAtAttribute($date) {
-        $this->attributes['published_at'] = Carbon::parse($date);
+        if($date <= Carbon::now()) {
+            $this->attributes['published_at'] = Carbon::now();
+        } else {
+            $this->attributes['published_at'] = Carbon::parse($date);
+        }
     }
 }

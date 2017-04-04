@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Http\Requests;
-use Carbon\Carbon;
-use Request;
+use App\Http\Requests\CreateArticleRequest;
 
 class ArticlesController extends Controller
 {
@@ -25,9 +24,9 @@ class ArticlesController extends Controller
         return view('articles.create');
     }
 
-    public function store() {
+    public function store(CreateArticleRequest $request) {
 
-        Article::create(Request::all());
+        Article::create($request->all());
 
         return redirect('articles');
     }
